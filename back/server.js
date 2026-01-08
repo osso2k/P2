@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { connectDB } from "./config/db.js";
+import { connectDB, userTable, uuidGen } from "./config/db.js";
 
 dotenv.config()
 
@@ -8,7 +8,10 @@ const app = express()
 const PORT = process.env.APP_PORT || null
 
 app.use(express.json())
+
 await connectDB()
+await uuidGen()
+await userTable()
 
 app.get("/", (req, res) => {
     res.json({ message: "Heelo" })
