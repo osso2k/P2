@@ -35,7 +35,7 @@ export const userTable = async () => {
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         username TEXT NOT NULL UNIQUE,
         email TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL,
+        hashed_password TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT NOW()
         );`)
         console.log("user Table exists!")
