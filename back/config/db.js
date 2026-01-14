@@ -46,14 +46,16 @@ export const userTable = async () => {
 
 export const tasksTable = async () => {
     try {
-        await pool.query(`CREATE TABLE IF NOT EXISTS schedule (
+        await pool.query(`CREATE TABLE IF NOT EXISTS tasks (
             id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-            set_tiime NUMBER,
-            timer NUMBER,
-            status TEXT,
-            user_id FOREIGN KEY users NOT NULL 
+            user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            title TEXT NOT NULL,
+            scheduled_at TIMESTAMP,
+            timer INTEGER,
+            status TEXT NOT NULL DEFAULT 'incomplete',
+            created_at TIMESTAMP DEFAULT NOW()
             )`)
-        console.log("schedule table exists!")
+        console.log("tasks table exists!")
     } catch (error) {
         console.log("ERR in creating task table", error.message)
     }
