@@ -19,7 +19,7 @@ await uuidGen()
 await userTable()
 await tasksTable()
 
-app.get("/", (req, res) => {
+app.get("/", protectedRoutees, (req, res) => {
     res.json({ message: "Wassup!" })
 })
 app.use("/api", userRouter)
