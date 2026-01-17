@@ -4,7 +4,7 @@ export const getTasks = async (req, res) => {
     try {
         const userId = req.user.id
         if (userId) {
-            const tasks = await pool.query(`SELECT * FROM tasks WHERE (user_id = $1) ORDER BY scheduled_at ASC`, [userId])
+            const tasks = await pool.query(`SELECT * FROM tasks WHERE (user_id = $1) ORDER BY scheduled_at ASC LIMIT 10;`, [userId])
             res.status(202).json(tasks.rows)
         }
     } catch (error) {
