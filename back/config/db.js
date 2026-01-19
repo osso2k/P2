@@ -50,7 +50,8 @@ export const tasksTable = async () => {
             id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
             user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
             title TEXT NOT NULL,
-            scheduled_at TIMESTAMP,
+            day SMALLINT CHECK (day BETWEEN 0 AND 6) NOT NULL,
+            time TIME NOT NULL,
             timer INTEGER,
             status TEXT NOT NULL DEFAULT 'incomplete',
             created_at TIMESTAMP DEFAULT NOW()

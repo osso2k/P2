@@ -4,7 +4,7 @@ export const getTasks = async (req, res) => {
     try {
         const userId = req.user.id
         if (userId) {
-            const tasks = await pool.query(`SELECT * FROM tasks WHERE (user_id = $1) ORDER BY scheduled_at ASC LIMIT 10;`, [userId])
+            const tasks = await pool.query(`SELECT * FROM tasks WHERE (user_id = $1) ORDER BY day,time ASC LIMIT 10;`, [userId])
             res.status(202).json(tasks.rows)
         }
     } catch (error) {
@@ -13,14 +13,14 @@ export const getTasks = async (req, res) => {
 }
 export const createTask = async (req, res) => {
     try {
-        const { title, timer, scheduledAt } = req.body
+        const { title, timer, day, time } = req.body
 
-        if (!title || !scheduledAt) {
+        if (!title || day === undefined || !time) {
             return res.json({ message: "Please Enter title and preferred date-time" })
         }
 
         const userId = req.user.id
-        const task = await pool.query(`INSERT INTO tasks (user_id, title, scheduled_at, timer) VALUES ($1,$2,$3,$4) RETURNING id`, [userId, title, scheduledAt, timer || null])
+        const task = await pool.query(`INSERT INTO tasks (user_id, title, day, time, timer) VALUES ($1,$2,$3,$4,$5) RETURNING id`, [userId, title, day, time, timer ?? null])
 
         res.status(202).json({ message: "Task created!", taskId: task.rows[0].id })
     } catch (error) {
@@ -31,11 +31,11 @@ export const updateTask = async (req, res) => {
     try {
         const { id } = req.params
         const userID = req.user.id
-        const { title, timer, scheduledAt, status } = req.body
+        const { title, timer, day, time, status } = req.body
         if (!id) {
             return res.json({ message: "Couldn't update task!" })
         }
-        const task = await pool.query(`UPDATE tasks SET title=COALESCE($1,title),timer=COALESCE($2,timer), scheduled_at=COALESCE($3,scheduled_at), status=COALESCE($4,status) WHERE id = $5 AND user_id=$6 RETURNING id`, [title, timer, scheduledAt, status, id, userID])
+        const task = await pool.query(`UPDATE tasks SET title=COALESCE($1,title),timer=COALESCE($2,timer), day=COALESCE($3,day),time=COALESCE($4,time), status=COALESCE($5,status) WHERE id = $6 AND user_id=$7 RETURNING id`, [title, timer, day, time, status, id, userID])
 
         if (task.rows.length === 0) {
             return res.json({ message: "Task not found" })
