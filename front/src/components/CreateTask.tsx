@@ -49,13 +49,13 @@ const CreateTask = () => {
                 <label className="my-auto text-amber-900 text-2xl pr-2">Day: </label>
                 <select name="day" value={task.day ?? ""} onChange={handleChange} className="bg-white pl-1 py-2 rounded my-auto cursor-pointer border">
                     <option value="">Select-</option>
-                    <option value="0">Monday</option>
-                    <option value="1">Tuesday</option>
-                    <option value="2">Wednesday</option>
-                    <option value="3">Thursday</option>
-                    <option value="4">Friday</option>
-                    <option value="5">Saturday</option>
-                    <option value="6">Sunday</option>
+                    <option value="0">Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
                 </select>
                 <label className=" text-amber-900 text-2xl mx-2 my-auto">time: </label><input value={task.time} onChange={handleChange}  type="time" name="time" className="bg-white border rounded-xl px-4 py-2 shadow-sm cursor-pointer w-20" />
             </div>

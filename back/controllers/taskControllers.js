@@ -1,12 +1,25 @@
 import { pool } from "../config/db.js"
+// import OpenAI from "openai"
+// import dotenv from 'dotenv'
+// dotenv.config()
+// const openai = new OpenAI({
+//     apiKey: process.env.OPENAI_API_KEY
+// })
+
 
 export const getTasks = async (req, res) => {
     try {
         const userId = req.user.id
         if (userId) {
             const tasks = await pool.query(`SELECT * FROM tasks WHERE (user_id = $1) ORDER BY day,time ASC LIMIT 10;`, [userId])
-            res.status(202).json(tasks.rows)
+            // const motivation = await openai.responses.create({
+            //     model: "gpt-5-nano",
+            //     input: `Generate a motivational quote regarding users tasks.1-Only one quote.2-CAnt be longer than a sentence.3-It makes the user think.4-just give me the quote no fluff,once again only quote,use this as a reference${tasks.rows[0].title}`,
+            //     store: true
+            // })
+            res.status(202).json({ tasks: tasks.rows })
         }
+
     } catch (error) {
         res.json({ message: "ERR in fetching tasks", err: error.message })
     }

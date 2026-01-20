@@ -33,20 +33,26 @@ const LoginPage = () => {
         
     }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col bg-zinc-800 p-4">
-            <div>
-                <label className="mr-2">email </label>
-                <input type="text" name="email" onChange={handleChange} className="bg-white pl-2 rounded-2xl text-black text-lg" />
+    <div className="flex flex-col w-full h-screen justify-center items-center">
+        <h1 className="flex text-4xl font-serif font-semibold mb-3">Log In</h1>
+        <div className="border rounded-lg p-15 text-2xl">
+              <form onSubmit={handleSubmit}>
+        <div className="flex flex-col px-6 ">
+            <div className="flex flex-wrap pb-2">
+                <label className="mr-12">Email: </label>
+                <input type="text" name="email" onChange={handleChange} className="border bg-white pl-2 h-9 rounded-2xl text-black text-lg" />
             </div>
             <div>
                 <label className="mr-2">password </label>
-                <input type="text" name="password" onChange={handleChange} className="bg-white pl-2 rounded-2xl text-black text-lg" />
+                <input type="text" name="password" onChange={handleChange} className="border bg-white pl-2 h-9 rounded-2xl text-black text-lg" />
         </div>
         </div>
-        <button type="submit" className="px-4 py-2 bg-zinc-400 rounded-3xl hover:scale-125 transition-all ease-out duration-1000 " >Submit</button>
+        <button type="submit" className="px-4 flex mx-auto py-2 bg-zinc-400 rounded-3xl hover:scale-105 mt-6 transition-all ease-out duration-1000 " >Submit</button>
       </form>
+      <div className="flex w-full mt-4">
+        <p className="mx-auto text-lg font-serif">Don't Have an account? <span className="font-bold cursor-pointer" onClick={()=>{navigate('/signup')}}>Sign up!</span></p>
+      </div>
+        </div>
     </div>
   )
 }
