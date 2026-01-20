@@ -33,7 +33,7 @@ const CreateTask = () => {
 
     }
   return (
-    <div className="flex flex-wrap mt-10 w-[60%] mx-auto h-[50%] bg-orange-50 rounded-2xl border">
+    <div className="flex flex-wrap mb-6 w-[50%] mx-auto h-[40%] bg-orange-50 rounded-2xl border">
       <div className="grid grid-cols-[3fr_3fr] h-full w-full">
         <div className="order-1 flex flex-col gap-2 w-full">
         <div className="flex mt-10 ml-5">
@@ -77,7 +77,7 @@ const CreateTask = () => {
         </form>
 
       </div>
-        <div className="order-2 flex flex-col mt-10 text-black border-l mb-3">
+        <div className="order-2 flex flex-col mt-10 text-black border-l mb-3 pl-4">
             <div className="border-b pb-2 mx-24">
                 <h3 className=" text-center text-2xl font-semibold font-serif">BE EFFICIENT!</h3>
                 <p className="text-xs text-zinc-600 font-mono text-center">Always decompose into simpler tasks.</p>

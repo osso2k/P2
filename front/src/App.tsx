@@ -7,6 +7,7 @@ import CreateTask from "./components/CreateTask"
 // import Navbar from "./components/Navbar"
 import { LuArchive } from "react-icons/lu";
 import {motion} from 'motion/react'
+import WeeklyTasks from "./components/WeeklyTasks";
 
 const App = () => {
   
@@ -19,8 +20,8 @@ const App = () => {
       </div>
       <p className="ml-[26.5%] font-serif text-3xs text-zinc-600">Start working on your future one day at a time!</p>
     </div>
+    <WeeklyTasks />
     <CreateTask />
-
   </motion.div>
   )
 }
