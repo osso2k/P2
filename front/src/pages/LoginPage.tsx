@@ -39,11 +39,11 @@ const LoginPage = () => {
               <form onSubmit={handleSubmit}>
         <div className="flex flex-col px-6 ">
             <div className="flex flex-wrap pb-2">
-                <label className="mr-12">Email: </label>
+                <label className="mr-14">Email: </label>
                 <input type="text" name="email" onChange={handleChange} className="border bg-white pl-2 h-9 rounded-2xl text-black text-lg" />
             </div>
             <div>
-                <label className="mr-2">password </label>
+                <label className="mr-2">password: </label>
                 <input type="text" name="password" onChange={handleChange} className="border bg-white pl-2 h-9 rounded-2xl text-black text-lg" />
         </div>
         </div>

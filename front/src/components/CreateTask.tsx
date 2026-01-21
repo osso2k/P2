@@ -41,7 +41,7 @@ const CreateTask = () => {
             <h2 className="my-auto text-2xl text-zinc-900 font-semibold border-b border-r pr-1 pb-1 shadow-[3px_6px_12px_rgba(0,0,0,0.09)] ">Add New Task</h2>
         </div>
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-2 ml-6 mt-15  w-full">
+            <div className="flex flex-col gap-2 ml-3 mt-8 w-full">
             <div className="flex w-full ">
                 <input value={task.title} onChange={handleChange} placeholder="What needs to be done?"  type="text" name="title" className="focus:border-red-500 h-10 my-auto  w-[70%] rounded-lg  bg-white text-black pl-2" />
             </div>
@@ -73,7 +73,7 @@ const CreateTask = () => {
             </div>
 
         </div>
-        <button type="submit" className="px-4 py-2 bg-yellow-50 border flex mx-[25%] mt-2 cursor-pointer text-2xl rounded-xl">Add</button>
+        <button type="submit" className="px-4 py-1 bg-yellow-50 border flex mx-[75%] mt-2 cursor-pointer text-xl rounded-xl">Add</button>
         </form>
 
       </div>

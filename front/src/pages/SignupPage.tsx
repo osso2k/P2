@@ -41,15 +41,15 @@ const SignupPage = () => {
         <div className="flex flex-col  p-4">
             <div className="py-1">
                 <label className="mr-2">username: </label>
-                <input type="text" name="username" onChange={handleChange} className="h-9 bg-white pl-2 rounded-2xl text-black text-lg" />
+                <input type="text" name="username" onChange={handleChange} className="h-9 border bg-white pl-2 rounded-2xl text-black text-lg" />
             </div>
             <div className="py-1">
                 <label className="mr-16">email: </label>
-                <input type="text" name="email" onChange={handleChange} className="h-9 bg-white pl-2 rounded-2xl text-black text-lg" />
+                <input type="text" name="email" onChange={handleChange} className="h-9 border bg-white pl-2 rounded-2xl text-black text-lg" />
             </div>
             <div className="py-1">
                 <label className="mr-4">password: </label>
-                <input type="text" name="password" onChange={handleChange} className="h-9 bg-white pl-2 rounded-2xl text-black text-lg" />
+                <input type="text" name="password" onChange={handleChange} className="h-9 border bg-white pl-2 rounded-2xl text-black text-lg" />
         </div>
         </div>
         <button type="submit" className="flex mx-auto px-4 py-2 bg-zinc-400 rounded-3xl hover:scale-105 transition-all ease-out duration-1000 " >Submit</button>
