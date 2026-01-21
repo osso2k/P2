@@ -14,9 +14,9 @@ const App = () => {
   return (
   <motion.div initial={{y:5, opacity:0}} animate={{opacity:1, y:0}} transition={{ease:'easeIn' , duration:0.8}} className="flex flex-col w-full">
     <div className="flex flex-wrap flex-col w-full">
-      <div className="flex  mt-24 ml-[25%] ">
+      <div className="flex  mt-10 ml-[25%] ">
         <LuArchive className="text-3xl my-auto text-blue-400" />
-        <h2 className="text-4xl pl-2 font-semibold font-serif">Schedly</h2>
+        <h2 className="text-4xl italic pl-2 font-semibold font-serif">Schedly</h2>
       </div>
       <p className="ml-[26.5%] font-serif text-3xs text-zinc-600">Start working on your future one day at a time!</p>
     </div>

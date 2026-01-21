@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import api from "../../api/axios.ts"
 import toast from "react-hot-toast"
 import { Trash2 } from "lucide-react"
-
+import {motion} from 'motion/react'
 interface Task {
   id: string
   title: string
@@ -59,7 +59,7 @@ const WeeklyTasks = () => {
     <div className="mx-auto mt-12 mb-4 w-[50%] rounded-2xl shadow-lg p-6">
 
       <h1 className="text-3xl font-bold text-center text-zinc-800 mb-6">
-        Your Weekly Schedule
+        Weekly Overview
       </h1>
 
       <div className="grid grid-cols-7 gap-3">
@@ -71,15 +71,15 @@ const WeeklyTasks = () => {
               {dayName.slice(0,3)}
             </h2>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-wrap  flex-col gap-2">
 
               {tasks
                 .filter(task => task.day === index)
                 .sort((a, b) => a.time.localeCompare(b.time))
                 .map(task => (
-                  <div
+                  <motion.div initial={{opacity:0,y:10}} animate={{opacity:1,y:0}}
                     key={task.id}
-                    className="bg-purple-100 rounded-lg p-2 text-sm shadow-sm flex justify-between items-center group"
+                    className=" rounded-lg p-2 text-sm shadow-sm flex justify-between items-center group"
                   >
                     <div>
                       <p className="font-semibold text-zinc-800">
@@ -97,7 +97,7 @@ const WeeklyTasks = () => {
                       <Trash2 size={16} />
                     </button>
 
-                  </div>
+                  </motion.div>
                 ))}
 
             </div>
