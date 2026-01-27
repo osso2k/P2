@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export const generateToken = async (id, req, res) => {
-    const token = jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "24h" })
+    const token = jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "12h" })
     return token
 }
 export const protectedRoutees = (req, res, next) => {
