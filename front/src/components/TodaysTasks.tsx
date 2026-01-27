@@ -20,7 +20,7 @@ const TasksList = () => {
         setTasks(response.data.tasks);
       };
       getTasks();
-    }, []);
+    }, [tasks]);
   const deleteTask = async (id: string | number) => {
     await api.delete(`/api/task/deleteTask/${id}`)
     toast.success("Task deleted!")

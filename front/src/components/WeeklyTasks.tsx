@@ -3,19 +3,21 @@ import {useState, useEffect} from "react"
 import { motion } from "motion/react"; 
 import { FaEdit } from "react-icons/fa";
 import EditTask from "./EditTask";
-
+import {FaTrash} from "react-icons/fa"
+import toast from "react-hot-toast";
 interface Task {
   id: string | number;
   title: string;
   day: number;
   time: string;
   status: string;
-  timer?: number;
+  timer?: number | null;
 }
 const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
 const WeeklyTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([])
-  const [isUpdating,setIsUpdating] = useState<boolean>(false)
+  const [editingTask, setEditingTask] = useState<Task | null>(null)
 
   const dayIndex = new Date().getDay()
   const [day,setDay] = useState<number>(dayIndex)
@@ -27,8 +29,29 @@ const WeeklyTasks = () => {
     }
     getTasks()
   },[tasks])
+
   const handleChange = (e:React.ChangeEvent<HTMLSelectElement>)=>{
     setDay(Number(e.target.value))
+  }
+
+  const handleEditTask = (task: Task) => {
+    setEditingTask(prev => prev?.id === task.id ? null : task)
+  }
+  
+
+  const handleUpdateTask = (updatedTask: Task) => {
+    setTasks(prev => prev.map(task => 
+      task.id === updatedTask.id ? updatedTask : task
+    ))
+    setEditingTask(null)
+  }
+
+  const handleCancelEdit = () => {
+    setEditingTask(null)
+  }
+  const deleteTask = async (id: string | number) => {
+    await api.delete(`/api/task/deleteTask/${id}`)
+    toast.success("Task deleted!")
   }
  
   return (
@@ -54,13 +77,21 @@ const WeeklyTasks = () => {
           <h2 className="mt-2 w-full font-serif text-[16px] sm:text-[18px] md:text-xl font-semibold">{task.title}</h2>
           <div className="flex flex-wrap mt-5 w-full"><p className="font-semibold font-sans">{task.time.split(":")[0]}:{task.time.split(":")[1]}</p></div>
           <div className="flex flex-wrap w-full "><p className="text-xs sm:text-[13px] md:text-[15px] font-semibold text-amber-900">status: </p><p className="font-semibold font-serif text-xs sm:text-[13px] md:text-[15px]">{task.status}</p></div>
-          <div className="flex flex-wrap w-full mb-3"><p className="text-xs sm:text-[13px] md:text-[15px] font-semibold text-amber-900">duration: </p><p className="font-semibold font-sans text-xs sm:text-[13px] md:text-[15px]">{task.timer || "-"}</p><FaEdit onClick={()=>{setIsUpdating(!isUpdating)}} className="ml-26 cursor-pointer text-xl text-amber-800" /></div>
+          <div className="flex flex-wrap w-full mb-3"><p className="text-xs sm:text-[13px] md:text-[15px] font-semibold text-amber-900">duration: </p><p className="font-semibold font-sans text-xs sm:text-[13px] md:text-[15px]">{task.timer || "-"}</p><FaEdit onClick={()=>handleEditTask(task)} className="ml-auto cursor-pointer text-xl text-amber-800 hover:text-amber-600 transition-colors" title="Edit this task" /><FaTrash onClick={()=>deleteTask(task.id)} className="text-zinc-700 hover:text-zinc-500 py-1 text-2xl"/></div>
           
         </motion.div>
       ))}
     </div>
+    {editingTask && (
+      <div className="mt-4">
+        <EditTask 
+          task={editingTask}
+          onUpdate={handleUpdateTask}
+          onCancel={handleCancelEdit}
+        />
+      </div>
+    )}
     </div>
-    <EditTask />
    </div>
   )
 }
