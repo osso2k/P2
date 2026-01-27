@@ -56,11 +56,11 @@ const WeeklyTasks = () => {
  
   return (
    <div className="flex flex-col mt-8 mx-auto max-h-full w-[95%] sm:w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] shadow">
-      <h1 className="font-serif font-semibold text-2xl text-center mx-auto">Weekly Overview</h1>
+      <h1 className="font-serif font-semibold text-xl sm:text-2xl md:text-3xl italic text-center mx-auto">Weekly Overview</h1>
       <div className="flex mt-2">
       <h2 className="font-bold text-lg md:text-2xl font-serif mr-2">{days[day]}</h2>
-      <select onChange={handleChange} name="day" className="pl-2 border bg-white">
-        <option value={dayIndex}>-</option>
+      <select onChange={handleChange} name="day" className="pl-1 border bg-white">
+        <option value={dayIndex}>Today</option>
         <option value="0">Sun</option>
         <option value="1">Mon</option>
         <option value="2">Tue</option>
