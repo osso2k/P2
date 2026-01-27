@@ -47,7 +47,7 @@ const LoginPage = () => {
                 <input type="text" name="password" onChange={handleChange} className="border bg-white pl-2 h-9 rounded-2xl text-black text-lg" />
         </div>
         </div>
-        <button type="submit" className="px-4 flex mx-auto py-2 bg-zinc-400 rounded-3xl hover:scale-105 mt-6 transition-all ease-out duration-1000 " >Submit</button>
+        <button type="submit" className="px-4 flex mx-auto py-2 bg-zinc-400 rounded-3xl hover:scale-105 mt-6 transition-all ease-out duration-1000 " >Log in</button>
       </form>
       <div className="flex w-full mt-4">
         <p className="mx-auto text-lg font-serif">Don't Have an account? <span className="font-bold cursor-pointer" onClick={()=>{navigate('/signup')}}>Sign up!</span></p>
