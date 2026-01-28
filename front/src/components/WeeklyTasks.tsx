@@ -71,13 +71,13 @@ const WeeklyTasks = () => {
       </select>
     </div>
     <div className="">
-    <div className="grid gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 w-full mt-4 mb-2">
+    <div className="grid max-w-full gap-2 grid-cols-3 sm:grid-cols-4 md:grid-cols-5 mt-4 mb-2">
       {tasks.filter(task => task.day === day).map((task)=>(
-        <motion.div initial={{y:2 , opacity:0}} animate={{y:0 , opacity:1}} transition={{duration:1, ease:"easeIn"}} className="flex flex-wrap flex-col shadow-lg pl-2 rounded-lg border min-w-fit " key={task.id}>
-          <h2 className="mt-2 w-full font-serif text-[16px] sm:text-[18px] md:text-xl font-semibold">{task.title}</h2>
-          <div className="flex flex-wrap mt-5 w-full"><p className="font-semibold font-sans">{task.time.split(":")[0]}:{task.time.split(":")[1]}</p></div>
-          <div className="flex flex-wrap w-full "><p className="text-xs sm:text-[13px] md:text-[15px] font-semibold text-amber-900">status: </p><p className="font-semibold font-serif text-xs sm:text-[13px] md:text-[15px]">{task.status}</p></div>
-          <div className="flex flex-wrap w-full mb-3"><p className="text-xs sm:text-[13px] md:text-[15px] font-semibold text-amber-900">duration: </p><p className="font-semibold font-sans text-xs sm:text-[13px] md:text-[15px]">{task.timer || "-"}</p><FaEdit onClick={()=>handleEditTask(task)} className="ml-auto cursor-pointer text-xl text-amber-800 hover:text-amber-600 transition-colors" title="Edit this task" /><FaTrash onClick={()=>deleteTask(task.id)} className="text-zinc-700 hover:text-zinc-500 py-1 text-2xl"/></div>
+        <motion.div initial={{y:2 , opacity:0}} animate={{y:0 , opacity:1}} transition={{duration:1, ease:"easeIn"}} className="flex flex-wrap flex-col shadow-lg pl-2 rounded-lg border min-w-full" key={task.id}>
+          <h2 className="w-full mt-2 wrap-break-word font-serif text-[16px] sm:text-[18px] md:text-xl font-semibold">{task.title}</h2>
+          <div className="flex flex-wrap mt-5 max-w-full"><p className="font-semibold font-sans">{task.time.split(":")[0]}:{task.time.split(":")[1]}</p></div>
+          <div className="flex flex-wrap max-w-full "><p className="text-xs sm:text-[13px] md:text-[15px] font-semibold text-amber-900">status: </p><p className="font-semibold font-serif text-xs sm:text-[13px] md:text-[15px]">{task.status}</p></div>
+          <div className="flex flex-wrap max-w-full mb-3"><p className="text-xs sm:text-[13px] md:text-[15px] font-semibold text-amber-900">duration: </p><p className="font-semibold font-sans text-xs sm:text-[13px] md:text-[15px]">{task.timer || "-"}</p><FaEdit onClick={()=>handleEditTask(task)} className="ml-auto cursor-pointer text-xl text-amber-800 hover:text-amber-600 transition-colors" title="Edit this task" /><FaTrash onClick={()=>deleteTask(task.id)} className="text-zinc-700 hover:text-zinc-500 py-1 text-2xl"/></div>
           
         </motion.div>
       ))}
