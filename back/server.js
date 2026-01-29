@@ -1,4 +1,5 @@
 import express from "express";
+import rateLimit from "express-rate-limit";
 import dotenv from "dotenv";
 import { connectDB, tasksTable, userTable, uuidGen } from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
@@ -9,9 +10,15 @@ dotenv.config()
 
 const app = express()
 const PORT = process.env.APP_PORT || null
-
+const limiter = rateLimit({
+    windowMs: 15 * 50 *1000,
+    max:100,
+})
+app.use(limiter)
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin:"https://schedly-taupe.vercel.app"
+}))
 
 await connectDB()
 await uuidGen()
