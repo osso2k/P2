@@ -17,7 +17,9 @@ const limiter = rateLimit({
 app.use(limiter)
 app.use(express.json())
 app.use(cors({
-    origin:"https://schedly-taupe.vercel.app"
+    origin:"https://schedly-taupe.vercel.app",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true
 }))
 
 await connectDB()
